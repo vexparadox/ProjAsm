@@ -9,7 +9,10 @@
 
 class CPU{
 private:
-	void move(std::initializer_list<int> params);
+	void move(const std::vector<unsigned int>& params);
+	void write(const std::vector<unsigned int>& params);
+	void dump(const std::vector<unsigned int>& params);
+	void printError(const std::string& txt, int line_number);
 protected:
 	Memory* memory;
 public:
