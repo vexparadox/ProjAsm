@@ -2,6 +2,7 @@
 
 CPU::CPU(){
 	memory = new Memory();
+	program_counter = 0;
 	possible_instructions.push_back(Instruction("MOV", &CPU::move, 2)); // MOV SRC DEST
 	possible_instructions.push_back(Instruction("WRITE", &CPU::write, 2)); // WRITE DEST VAL
 	possible_instructions.push_back(Instruction("DUMP", &CPU::dump, 0)); // DUMP
@@ -29,7 +30,7 @@ void CPU::loadProgram(const std::string& filename){
 	    			return;
     			}
     			//create a jump point to the previous instruction
-    			memory->labels.push_back(Label(std::stoi(tokens[1]), memory->program_instructions.size()-1));
+    			memory->labels.push_back(Label(std::stoi(tokens[1]), memory->program_instructions.size()));
     			line_number++;
     			continue;
     		}
@@ -73,8 +74,10 @@ void CPU::printError(const std::string& txt, int line_number){
 }
 
 void CPU::runProgram(){
-	for(auto& ins : memory->program_instructions){
-		(this->*ins.func)(ins.parameters);
+	while(program_counter <  memory->program_instructions.size()){
+		std::cout << memory->program_instructions[program_counter].name << std::endl;
+		(this->*memory->program_instructions[program_counter].func)(memory->program_instructions[program_counter].parameters);
+		program_counter++;
 	}
 }
 
@@ -89,7 +92,7 @@ void CPU::write(const std::vector<unsigned int>& params){
 }
 
 void CPU::jump(const std::vector<unsigned int>& params){
-	std::cout << memory->program_instructions[memory->labels[0].address].name << std::endl;
+	program_counter = memory->labels[0].address-1;
 }
 
 void CPU::dump(const std::vector<unsigned int>& params){

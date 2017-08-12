@@ -14,6 +14,7 @@ private:
 	void jump(const std::vector<unsigned int>& params);
 	void dump(const std::vector<unsigned int>& params);
 	void printError(const std::string& txt, int line_number);
+	unsigned int program_counter;
 protected:
 	Memory* memory;
 public:
