@@ -28,5 +28,5 @@ public:
 	CPU();
 	std::vector<Instruction> possible_instructions;
 	void loadProgram(const std::string& filename);
-	void runProgram();
+	void runProgram(bool verbose);
 };

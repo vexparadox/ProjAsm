@@ -7,6 +7,6 @@ int main(int argc, char const *argv[]){
 	}else{
 		cpu->loadProgram("test.txt");
 	}
-	cpu->runProgram();
+	cpu->runProgram(false);
 	return 0;
 }

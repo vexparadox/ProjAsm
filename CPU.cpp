@@ -88,9 +88,11 @@ void CPU::printInstruction(const Instruction& ins){
 	std::cout << std::endl;
 }
 
-void CPU::runProgram(){
+void CPU::runProgram(bool verbose){
 	while(program_counter <  memory->program_instructions.size()){
-		printInstruction(memory->program_instructions[program_counter]);
+		if(verbose){
+			printInstruction(memory->program_instructions[program_counter]);
+		}
 		bool result = (this->*memory->program_instructions[program_counter].func)(memory->program_instructions[program_counter].parameters);
 		if(!result){
 			return;
