@@ -2,7 +2,11 @@
 
 int main(int argc, char const *argv[]){
 	cpu = new CPU();
-	cpu->loadProgram("test.txt");
+	if(argc > 1){
+		cpu->loadProgram(argv[1]);
+	}else{
+		cpu->loadProgram("test.txt");
+	}
 	cpu->runProgram();
 	return 0;
 }

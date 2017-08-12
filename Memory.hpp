@@ -6,8 +6,10 @@ public:
 	Memory();
 	//the program data
 	std::vector<Instruction> program_instructions;
-	//themain memory
+	//the main memory
 	std::array<unsigned int, 20> main_memory = {};
+	//the registers
+	std::array<unsigned int, NUM_REGISTERS> registers = {};
 	//the labels given, this maps to program_instructions
 	std::vector<Label> labels;
 };

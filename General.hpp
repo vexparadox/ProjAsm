@@ -2,6 +2,9 @@
 #include <vector>
 #include <string>
 #include <initializer_list>
+
+#define NUM_REGISTERS 5
+
 class CPU;
 typedef bool (CPU::*InstructionFunction)(const std::vector<unsigned int>& params);
 
