@@ -79,6 +79,7 @@ void CPU::runtimeError(const std::string& txt){
 
 void CPU::runProgram(){
 	while(program_counter <  memory->program_instructions.size()){
+		std::cout << memory->program_instructions[program_counter].name << std::endl;
 		bool result = (this->*memory->program_instructions[program_counter].func)(memory->program_instructions[program_counter].parameters);
 		if(!result){
 			return;
@@ -102,7 +103,7 @@ bool CPU::write(const std::vector<unsigned int>& params){
 bool CPU::jump(const std::vector<unsigned int>& params){
 	for(const auto& label : memory->labels){
 		if(label.id == params[0]){
-			program_counter = label.address;
+			program_counter = label.address-1; // has to be -1 because by default it'll +1 after
 			return true;
 		}
 	}
