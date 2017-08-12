@@ -1,6 +1,10 @@
 # Instructions
 MOV   SRC DEST
+
 SAVE  SRC RDEST
+
 LOAD  RSRC DEST
+
 WRITE DEST VAL
+
 DUMP
