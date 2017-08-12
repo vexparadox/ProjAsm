@@ -5,6 +5,7 @@ CPU::CPU(){
 	possible_instructions.push_back(Instruction("MOV", &CPU::move, 2)); // MOV SRC DEST
 	possible_instructions.push_back(Instruction("WRITE", &CPU::write, 2)); // WRITE DEST VAL
 	possible_instructions.push_back(Instruction("DUMP", &CPU::dump, 0)); // DUMP
+	possible_instructions.push_back(Instruction("JMP", &CPU::jump, 1)); // DUMP
 }
 
 void CPU::loadProgram(const std::string& filename){
@@ -20,13 +21,15 @@ void CPU::loadProgram(const std::string& filename){
 		//if there's actually something there
         if(tokens.size() > 0){
 
-
-    		//special case of labels!
+    		//	special case of labels!
+    		// these are preproccessed, so aren't instructions
     		if(tokens[0] == "LABEL"){
     			if(tokens.size() < 2){
-    				printError("LABELS REQUIRE A NAME!", line_number);
+    				printError("LABELS REQUIRE AN ID!", line_number);
 	    			return;
     			}
+    			//create a jump point to the previous instruction
+    			memory->labels.push_back(Label(std::stoi(tokens[1]), memory->program_instructions.size()-1));
     			line_number++;
     			continue;
     		}
@@ -49,12 +52,15 @@ void CPU::loadProgram(const std::string& filename){
 					printError(error, line_number);
 	    			return;
 	    		}
+	    		//create the instruction
 	    		std::vector<unsigned int> params;
 	    		Instruction temp_ins(*iter);
 	    		for(int i = 0; i < (*iter).num_params; i++){
 	    			temp_ins.parameters.push_back(std::stoi(tokens[i+1]));
 	    		}
+	    		//push it back
 		    	memory->program_instructions.push_back(temp_ins);
+		    	//incremement the line number
 		    	line_number++;
 	    	}
     	}
@@ -80,6 +86,10 @@ void CPU::move(const std::vector<unsigned int>& params){
 void CPU::write(const std::vector<unsigned int>& params){
 	// WRITE DEST VAL
 	memory->main_memory[params[0]] = params[1];
+}
+
+void CPU::jump(const std::vector<unsigned int>& params){
+	std::cout << memory->program_instructions[memory->labels[0].address].name << std::endl;
 }
 
 void CPU::dump(const std::vector<unsigned int>& params){

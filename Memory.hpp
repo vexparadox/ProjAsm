@@ -8,6 +8,6 @@ public:
 	std::vector<Instruction> program_instructions;
 	//themain memory
 	std::array<unsigned int, 20> main_memory = {};
-	//the labels given, this is actually an instruction address
-	std::vector<unsigned int> labels;
+	//the labels given, this maps to program_instructions
+	std::vector<Label> labels;
 };

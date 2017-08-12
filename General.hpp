@@ -5,6 +5,12 @@
 class CPU;
 typedef void (CPU::*InstructionFunction)(const std::vector<unsigned int>& params);
 
+struct Label{
+	unsigned int address;
+	unsigned int id;
+	Label(unsigned int id, unsigned int address) : id(id), address(address){};
+};
+
 struct Instruction{
 	std::string name;
 	int num_params;
