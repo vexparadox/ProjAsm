@@ -3,7 +3,7 @@
 #include <string>
 #include <initializer_list>
 class CPU;
-typedef void (CPU::*InstructionFunction)(const std::vector<unsigned int>& params);
+typedef bool (CPU::*InstructionFunction)(const std::vector<unsigned int>& params);
 
 struct Label{
 	unsigned int address;

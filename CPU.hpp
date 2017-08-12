@@ -9,11 +9,12 @@
 
 class CPU{
 private:
-	void move(const std::vector<unsigned int>& params);
-	void write(const std::vector<unsigned int>& params);
-	void jump(const std::vector<unsigned int>& params);
-	void dump(const std::vector<unsigned int>& params);
+	bool move(const std::vector<unsigned int>& params);
+	bool write(const std::vector<unsigned int>& params);
+	bool jump(const std::vector<unsigned int>& params);
+	bool dump(const std::vector<unsigned int>& params);
 	void printError(const std::string& txt, int line_number);
+	void runtimeError(const std::string& txt);
 	unsigned int program_counter;
 protected:
 	Memory* memory;

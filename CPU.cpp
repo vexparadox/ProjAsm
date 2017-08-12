@@ -73,33 +73,51 @@ void CPU::printError(const std::string& txt, int line_number){
 	std::cout << "Error on line " << line_number+1 << ": " << txt << std::endl;
 }
 
+void CPU::runtimeError(const std::string& txt){
+	std::cout << "Runtime: " << txt << std::endl;
+}
+
 void CPU::runProgram(){
 	while(program_counter <  memory->program_instructions.size()){
-		std::cout << memory->program_instructions[program_counter].name << std::endl;
-		(this->*memory->program_instructions[program_counter].func)(memory->program_instructions[program_counter].parameters);
+		bool result = (this->*memory->program_instructions[program_counter].func)(memory->program_instructions[program_counter].parameters);
+		if(!result){
+			return;
+		}
 		program_counter++;
 	}
 }
 
-void CPU::move(const std::vector<unsigned int>& params){
+bool CPU::move(const std::vector<unsigned int>& params){
 	// MOV SRC DEST
 	memory->main_memory[params[1]] = memory->main_memory[params[0]];
+	return true;
 }
 
-void CPU::write(const std::vector<unsigned int>& params){
+bool CPU::write(const std::vector<unsigned int>& params){
 	// WRITE DEST VAL
 	memory->main_memory[params[0]] = params[1];
+	return true;
 }
 
-void CPU::jump(const std::vector<unsigned int>& params){
-	program_counter = memory->labels[0].address-1;
+bool CPU::jump(const std::vector<unsigned int>& params){
+	for(const auto& label : memory->labels){
+		if(label.id == params[0]){
+			program_counter = label.address;
+			return true;
+		}
+	}
+	std::string error(" Failed to find jump label ");
+	error.append(std::to_string(params[0]));
+	runtimeError(error);
+	return false;
 }
 
-void CPU::dump(const std::vector<unsigned int>& params){
+bool CPU::dump(const std::vector<unsigned int>& params){
 	// DUMP
 	// prints the memory
 	for(auto mem : memory->main_memory){
 		std::cout << mem;
 	}
 	std::cout << std::endl;
+	return true;
 }
