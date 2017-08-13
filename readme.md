@@ -1,5 +1,5 @@
 # What is this?
-This is a virutal machine that's controlled using a custom set on instructions. It's main purpose is for emulating assembly-like language and aid in learning low level programming. 
+This is a virtual machine that's controlled using a custom set on instructions. It's main purpose is for emulating an assembly-like language and to aid in learning low level programming. 
 
 ## What's a virtual machine? 
 A virtual machine is an emulation of a computer system. Virtual machines are based on computer architectures and provide functionality of a physical computer. They create computers inside of your computer.
