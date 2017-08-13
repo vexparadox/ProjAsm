@@ -1,7 +1,8 @@
-#Schematic
+# Schematic
 
 * Main Memory 256 bytes directly addressed (0-255)
 * 5 byte registers (0-4) , 0 is the accumulator
+* All memory is 0 at the start of a program
 
 # Instructions
 | Opperand      |  Parameter 1  | Parameter 2  | Notes  	  |
