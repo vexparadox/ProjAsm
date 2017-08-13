@@ -7,6 +7,7 @@
 
 class CPU;
 typedef bool (CPU::*InstructionFunction)(const std::vector<unsigned int>& params);
+typedef unsigned char Byte;
 
 struct Label{
 	unsigned int address;

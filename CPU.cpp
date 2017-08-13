@@ -6,9 +6,9 @@ CPU::CPU(){
 	possible_instructions.push_back(Instruction("MOV", &CPU::move, 2)); // MOV SRC DEST
 	possible_instructions.push_back(Instruction("SAVE", &CPU::save, 2)); // SAVE SRC RDEST
 	possible_instructions.push_back(Instruction("LOAD", &CPU::load, 2)); // LOAD RSRC DEST
-	possible_instructions.push_back(Instruction("WRITE", &CPU::write, 2)); // WRITE DEST VAL
+	possible_instructions.push_back(Instruction("WRITE", &CPU::write, 2)); // WRITE VAL DEST
 	possible_instructions.push_back(Instruction("DUMP", &CPU::dump, 0)); // DUMP
-	possible_instructions.push_back(Instruction("JMP", &CPU::jump, 1)); // DUMP
+	possible_instructions.push_back(Instruction("JMP", &CPU::jump, 1)); // JUMP LABEL
 }
 
 void CPU::loadProgram(const std::string& filename){
@@ -116,8 +116,8 @@ bool CPU::move(const std::vector<unsigned int>& params){
 }
 
 bool CPU::write(const std::vector<unsigned int>& params){
-	// WRITE DEST VAL
-	memory->main_memory[params[0]] = params[1];
+	// WRITE VAL DEST
+	memory->main_memory[params[1]] = params[0];
 	return true;
 }
 
@@ -159,12 +159,12 @@ bool CPU::dump(const std::vector<unsigned int>& params){
 	// prints the memory
 	std::cout << "== MEMORY ==" << std::endl;
 	for(auto mem : memory->main_memory){
-		std::cout << mem << " ";
+		std::cout << (unsigned int)mem << " ";
 	}
 	std::cout << std::endl;
 	std::cout << "== REGISTERS ==" << std::endl;
 	for(auto reg : memory->registers){
-		std::cout << reg << " ";
+		std::cout << (unsigned int)reg << " ";
 	}
 	std::cout << std::endl;
 	return true;
