@@ -5,7 +5,7 @@
 * All memory is 0 at the start of a program
 
 # Instructions
-| Opperand      |  Parameter 1  | Parameter 2  | Notes  	  |
+| Opcode      |  Parameter 1  | Parameter 2  | Notes  	  |
 |:-------------:|:-------------:|:------------:|:------------:|
 |    MOV        | Address source| Address destination | Copies a value from the src to the dest in main memory|
 | SAVE      | Address source    |   Register destination    | Copies the value from the src to the destination register|
