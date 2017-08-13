@@ -14,3 +14,4 @@
 | SUB 	| Address source      |  NULL | Subtracts the value at the address source in main memory to the first register.|
 | LABEL | Label ID      |  NULL | Creates a jumpable part of the program with an ID.|
 | JMP 	| Label ID      |  NULL | Jumps to the corresponding label.|
+| DUMP 	| NULL      |  NULL | Writes the memory and registers to STD::OUT.|
