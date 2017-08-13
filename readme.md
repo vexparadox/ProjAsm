@@ -29,8 +29,8 @@
 This program doubles a number
 ```
 WRITE 20 0
-SAVE 0 0
-ADD 0
-LOAD 0 0
+SAVE  0 0
+ADD   0
+LOAD  0 0
 DUMP
 ```
