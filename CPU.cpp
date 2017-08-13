@@ -9,6 +9,8 @@ CPU::CPU(){
 	possible_instructions.push_back(Instruction("WRITE", &CPU::write, 2)); // WRITE VAL DEST
 	possible_instructions.push_back(Instruction("DUMP", &CPU::dump, 0)); // DUMP
 	possible_instructions.push_back(Instruction("JMP", &CPU::jump, 1)); // JUMP LABEL
+	possible_instructions.push_back(Instruction("ADD", &CPU::add, 1)); // ADD SRC
+	possible_instructions.push_back(Instruction("SUB", &CPU::sub, 1)); // SUB SRC
 }
 
 void CPU::loadProgram(const std::string& filename){
@@ -138,6 +140,16 @@ bool CPU::load(const std::vector<unsigned int>& params){
 		return false;
 	}
 	memory->main_memory[params[1]] = memory->registers[params[0]];
+	return true;
+}
+
+bool CPU::add(const std::vector<unsigned int>& params){
+	memory->registers[0] += memory->main_memory[params[0]];
+	return true;
+}
+
+bool CPU::sub(const std::vector<unsigned int>& params){
+	memory->registers[0] -= memory->main_memory[params[0]];
 	return true;
 }
 

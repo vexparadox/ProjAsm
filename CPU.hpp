@@ -16,6 +16,8 @@ private:
 	bool dump(const std::vector<unsigned int>& params);
 	bool save(const std::vector<unsigned int>& params);
 	bool load(const std::vector<unsigned int>& params);
+	bool add(const std::vector<unsigned int>& params);
+	bool sub(const std::vector<unsigned int>& params);
 
 	//prints
 	void printError(const std::string& txt, int line_number);
