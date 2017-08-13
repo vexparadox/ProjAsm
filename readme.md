@@ -1,9 +1,19 @@
+# What is this?
+This is a virutal machine that's controlled using a custom set on instructions. It's main purpose is for emulating assembly-like language and aid in learning low level programming. 
+
+## What's a virtual machine? 
+A virtual machine is an emulation of a computer system. Virtual machines are based on computer architectures and provide functionality of a physical computer. They create computers inside of your computer.
+
+## Is this an operating system?
+No, although an operating system could be built using this program, this is not an operating system. An operating system is a program that runs on your computer that performs basic tasks, such as recognizing input from the keyboard, sending output to the display screen, keeping track of files and directories on the storage drives, and controlling peripheral devices, such as printers.
+
 # Usage
  
  * Build with makefile
  * Launch with program file as first parameter
  * Program files are text based, not binary
  * Program files can have any/no file extension
+ * Opcodes must be completed with a return line
 
 # Schematic
 
