@@ -2,6 +2,8 @@
  
  * Build with makefile
  * Launch with program file as first parameter
+ * Program files are text based, not binary
+ * Program files can have any/no file extension
 
 # Schematic
 
